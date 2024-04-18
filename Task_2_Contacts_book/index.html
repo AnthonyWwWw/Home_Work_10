@@ -1,0 +1,158 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+      <script>
+          /*ДЗ 35. Книга контактів
+
+          Створіть об'єкт, який матиме одну властивість з масивом об'єктів.
+          Які представляють контакти у вашій контактній книзі. Кожен об'єкт має містити ім'я,
+          номер телефону та адресу електронної пошти. Додайте метод для пошуку контакту
+          за ім'ям та метод для додавання нових контактів.
+          */
+
+          let contactBook = {
+              contacts: [
+                  {
+                      name: "Іван",
+                      phone: "123456789",
+                      email: "ivan@example.com"
+                  },
+                  {
+                      name: "Марія",
+                      phone: "987654321",
+                      email: "maria@example.com"
+                  },
+                  {
+                      name: "Олександр",
+                      phone: "555888999",
+                      email: "oleksandr@example.com"
+                  }
+              ],
+
+              // Метод для пошуку контакту за ім'ям
+              findContactByName: function() {
+                  let name = prompt("Кого ви шукаєте?");
+                  // Перевірка, чи користувач не натиснув "Скасувати"
+                  if (name === null) {
+                      console.log("Програма припинила свою роботу");
+                      return null;
+                  }
+                  // Пошук контакту у масиві контактів
+                  for (let contact of this.contacts) {
+                      if (contact.name === name) {
+                          return contact;
+                      }
+                  }
+                  // Повертаємо null, якщо контакт не знайдено
+                  return null;
+              },
+
+
+              createNewUser: function () {// Метод для створення нового користувача
+                  let name = prompt("Як звати нового користувача:");
+
+                  if (name === null) { // Перевірка, чи користувач не натиснув "Скасувати"
+                      console.log("Програма припинила свою роботу");
+                      return null;
+                  }
+
+                  if (name === ""){// Перевірка, чи введено ім'я
+                      console.log("Поле має бути заповненим");
+                      return null;
+                  }
+
+                  let phone = prompt("Введіть його мобільний:");
+
+                  if (phone === null) { // Перевірка, чи користувач не натиснув "Скасувати"
+                      console.log("Програма припинила свою роботу");
+                      return null;
+                  }
+
+                  if (phone === "" || !(/^\d+$/.test(phone))){// Перевірка, чи введений номер телефону
+                      console.log("Введіть коректний номер телефону");
+                      return null;
+                  }
+
+                  let email = prompt("Введіть його email: qwert@ukr.net");
+
+                  if (email === null) {// Перевірка, чи користувач не натиснув "Скасувати"
+                      console.log("Програма припинила свою роботу");
+                      return null;
+                  }
+
+                  if (email === ""){  // Перевірка, чи введений email
+                      console.log("Поле має бути заповненим");
+                      return null;
+                  }
+
+                  if (!/\S+@\S+\.\S+/.test(email)) {  // Перевірка, чи введений коректний email
+                      console.log("Введіть коректний email");
+                      return null;
+                  }
+
+                  // Перевірка на унікальність імен користувачів
+                  for (let contact of this.contacts) {
+                      if (contact.name === name) {
+                          console.log("Користувач з таким іменем вже існує");
+                          return null;
+                      }
+                  }
+
+                  return {// Повертаємо об'єкт з даними нового користувача
+                      name: name,
+                      phone: phone,
+                      email: email
+                  };
+              },
+          };
+
+          let programStop = true;
+
+          // Головний цикл програми
+          while (programStop) {
+              // Виведення головного меню користувачу
+              let menu = prompt("Вітаю. Ми поки тестуємо бета-версію!!! " +
+                  "\n Натисніть 1 для додавання нового користувача " +
+                  "\n Натисніть 2 для пошуку користувача" +
+                  "\n Натисніть 3 для перегляду всіх користувачів");
+
+
+              if (menu !== null) { // Перевірка, чи ввід користувача не є нульовим або не-цифровим значенням
+                  switch (menu) {
+                      case "1":
+                          let newUser = contactBook.createNewUser();
+                          if (newUser !== null) {
+                              contactBook.contacts.push(newUser);
+                          }
+                          break;
+
+                      case "2":
+                          let searchResult = contactBook.findContactByName();
+                          if (searchResult !== null) {
+                              console.log(`Знайдено користувача: ${searchResult.name}, телефон: ${searchResult.phone}, email: ${searchResult.email}`);
+                          } else {
+                              console.log("Такого користувача не існує");
+                          }
+                          break;
+                      case "3":
+                          console.log(contactBook.contacts);
+                          break;
+                      default:
+                          console.log("Введіть коректний вибір");
+                  }
+              } else {
+                  console.log("Програма припинила свою роботу");
+                  programStop = false;
+              }
+          }
+      </script>
+</body>
+
+</html>

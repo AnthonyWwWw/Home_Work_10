@@ -1,0 +1,34 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+      <script>
+          /*ДЗ 34. Картка користувача
+
+            Створіть об'єкт, що містить інформацію про користувача, таку як ім'я, вік, місце проживання тощо.
+            Створіть метод об'єкту для отримання та відображення цих даних.
+          */
+          let user = {
+              name: "Іван",
+              age: 30,
+              location: "Київ",
+              occupation: "Програміст",
+              showInfo: function() {
+                  console.log(`Ім'я: ${this.name}`);
+                  console.log(`Вік: ${this.age}`);
+                  console.log(`Місце проживання: ${this.location}`);
+                  console.log(`Заняття: ${this.occupation}`);
+              }
+          };
+
+          user.showInfo();
+      </script>
+</body>
+
+</html>

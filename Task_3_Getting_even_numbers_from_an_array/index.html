@@ -1,0 +1,52 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+      <script>
+          /*ДЗ 36. Отримання парних чисел з масиву
+
+            Маєте масив чисел. Використовуйте вже існуючі методи масиву для створення нового масиву,
+            в якому лише парні числа з оригінального масиву.
+          */
+
+          const mass = [3,4,5,6,8,2,3,5,3,5,8,9,5,2,3,65];
+
+          //filter
+          const newMassFilters = mass.filter(number => number % 2 === 0);
+          console.log(newMassFilters);
+
+          //map
+          const newMassMap = mass.map(number => {//
+              if (number % 2 === 0) {
+                  return number;
+              }
+          });
+          console.log(newMassMap.filter(element => element !== undefined));
+
+          //reduce
+          const newMassReduce = mass.reduce((accumulator, currentValue) => {
+              if (currentValue % 2 === 0) {
+                  accumulator.push(currentValue);
+              }
+              return accumulator;
+          }, []);
+          console.log(newMassReduce);
+
+          //forEach
+          const newMassFind = [];
+          mass.forEach(number => {
+              if (number % 2 === 0) {
+                  newMassFind.push(number);
+              }
+          });
+          console.log(newMassFind);
+      </script>
+</body>
+
+</html>
